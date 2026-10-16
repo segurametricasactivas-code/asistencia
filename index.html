@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Asistencia</title>
-    <style> 
-        body  { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; }
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; }
         .container { text-align: center; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 90%; width: 400px; }
         .logo { font-size: 50px; margin-bottom: 10px; }
         h1 { color: #333; font-size: 24px; margin-bottom: 20px; }
@@ -15,19 +15,19 @@
         .loading { background-color: #e2e3e5; color: #383d41; display: block; }
     </style>
 </head>
-<body> 
+<body>
 
 <div class="container">
     <div class="logo">📋</div>
     <h1>Control de Asistencia</h1>
     <div id="status-box" class="status loading">Procesando tu código QR...</div>
 </div>
+
 <script>
-    // ⚠️ REEMPLAZA ESTA URL POR LA QUE COPIASTE EN EL PASO 1
+    // REEMPLAZA ESTA URL POR TU NUEVA URL DE GOOGLE APPS SCRIPT DEL PASO ANTERIOR
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzCZsJmtWOmg-BqglWscoEWhr2L3GsgA35laGFtDd-hPXCGYkZPXFs1vdypxzbqTmOmBw/exec";
 
     window.addEventListener('DOMContentLoaded', () => {
-        // Capturar el código desde la URL (?codigo=001RSS8922)
         const urlParams = new URLSearchParams(window.location.search);
         const codigoEmpleado = urlParams.get('codigo');
         const statusBox = document.getElementById('status-box');
@@ -38,7 +38,6 @@
             return;
         }
 
-        // Enviar la información de forma automática a Google Sheets
         fetch(`${GOOGLE_SCRIPT_URL}?codigo=${encodeURIComponent(codigoEmpleado)}`)
             .then(response => response.json())
             .then(data => {
